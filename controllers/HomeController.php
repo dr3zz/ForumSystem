@@ -21,7 +21,7 @@ class HomeController extends BaseController {
     public function category($id) {
         $this->questions = $this->db->getQuestionByCategoryId($id);
         $this->categories = $this->db->getAllCategories();
-        var_dump($this->categories);
+
         $this->setFormToken();
         $this->renderView('index');
     }

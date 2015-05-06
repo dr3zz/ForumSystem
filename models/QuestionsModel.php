@@ -71,7 +71,7 @@ on u.id = q.user_id ORDER BY q.id");
     public function viewQuestion($id)
     {
         $statement = self::$db->prepare(
-            "SELECT q.title,q.content, u.username,q.created_at FROM questions q join users u on u.id = q.user_id WHERE q.id = ?");
+            "SELECT q.title,q.content, u.username,q.created_at,q.id FROM questions q join users u on u.id = q.user_id WHERE q.id = ?");
         $statement->bind_param("i", $id);
         $statement->execute();
 
