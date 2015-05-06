@@ -30,10 +30,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="password" class="col-lg-4 control-label">Content:</label>
+                <label for="content" class="col-lg-4 control-label">Content:</label>
 
                 <div class="col-lg-8">
-                    <textarea rows="10" cols="70" class="form-control" name="content" "></textarea>
+                    <textarea rows="10" cols="70" id="content" class="form-control" name="content" "></textarea>
                 </div>
             </div>
             <input type="hidden" name="formToken" value="<?php echo $_SESSION['formToken'] ?>">

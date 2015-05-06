@@ -83,6 +83,12 @@ class QuestionsController extends BaseController {
         $this->renderView('view');
     }
 
+    public function addComment() {
+        if($this->isPost) {
+
+        }
+    }
+
 
 
 }
