@@ -17,7 +17,7 @@
     </div>
     <div class="postinfo pull-left">
         <div class="time"><i
-                class="fa fa-clock-o"></i><?php echo htmlentities(date("F d, Y", strtotime($this->question['created_at']))); ?>
+                class="fa "></i>Posted on  <?php echo htmlentities(date("F d, Y", strtotime($this->question['created_at']))); ?>
         </div>
     </div>
     <div class="clearfix"></div>
@@ -47,7 +47,7 @@
             </div>
             <div class="postinfo pull-left">
                 <div class="time"><i
-                        class="fa fa-clock-o"></i><?php echo htmlentities(date("F d, Y", strtotime($this->question['created_at']))); ?>
+                        class="fa fa-clock-o"></i><?php echo htmlentities($this->secondsToTime($answer['timediff'])); ?>
                 </div>
             </div>
             <div class="clearfix"></div>

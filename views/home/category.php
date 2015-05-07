@@ -8,7 +8,6 @@
                     <div class="wrap-ut pull-left">
                         <div class="userinfo pull-left">
                             <div class="avatar">
-                                <img src="/content/images/avatar.jpg" alt=""/>
 
                                 <div class="status green"><a
                                         href="#"><?php echo htmlentities($question['username']); ?></a></div>

@@ -58,6 +58,7 @@ group by q.id
 HAVING q.category_id = ?
 ORDER BY q.id
 limit ?, ?");
+        $id = $id * $pageSize;
         $statement->bind_param('iii', $categoryId, $id, $pageSize);
         $statement->execute();
         return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -154,7 +155,7 @@ limit ?, ?");
     {
 
         $statement = self::$db->prepare(
-            "SELECT name, comment,is_registered FROM answers where questions_id = ? ORDER BY id");
+            "SELECT name, comment,is_registered,timestampdiff(second,posted_at,now()) as timediff FROM answers where questions_id = ? ORDER BY id");
         $statement->bind_param("i", $questionId);
         $statement->execute();
         return $statement->get_result()->fetch_all(MYSQL_ASSOC);
