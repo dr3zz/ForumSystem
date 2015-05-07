@@ -18,7 +18,7 @@
         <!-- Header -->
         <header id="header">
             <div class="upper_header">
-                <img src="/content/images/forest.jpg" alt="forest" title="Image">
+                <img src="/content/images/slide.jpg" alt="Image" title="Image">
             </div>
             <div class="lower_header">
                 <!-- Logo -->

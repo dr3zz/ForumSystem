@@ -24,6 +24,9 @@ class HomeController extends BaseController
         $count = $this->db->getNumberOfRows();
 
         $this->questions = $this->db->getAll($id);
+        if(count($this->questions) == 0) {
+            $this->redirectToUrl('/');
+        }
 
         $this->pagination = $this->getRows($count);
         $this->setFormToken();
