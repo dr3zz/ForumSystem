@@ -48,9 +48,10 @@ h3 {  }
 /* /Header */
 
 /* Login */
-.login h1, .register h1, .new-post h1 { font-size: 40px; text-align: center; margin: 20px 0; }
+.login h1, .register h1, .new-post h1, .answer-form h1 { font-size: 40px; text-align: center; margin: 20px 0; }
 label, input { display: block; margin-bottom: 10px; }
 .login { width: 500px ; margin: 0 auto; margin-top: 5px; }
+.answer-form { width: 500px ; margin: 0 auto; margin-top: 5px; }
 .new-post { width: 500px; margin: 0 auto; margin-top: 5px; }
 .register { width: 500px; margin: 0 auto; margin-top: 5px; }
 /* /Login */

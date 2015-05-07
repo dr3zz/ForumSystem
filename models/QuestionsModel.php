@@ -90,6 +90,18 @@ ORDER BY q.id");
         return $statement->get_result()->fetch_assoc();
     }
 
+    public function addAnswerToQuestion($questionId, $name, $comment, $email = null, $isRegistered = 0)
+    {
+        if ($email == null) {
+            $email = '';
+        }
+        $statement = self::$db->prepare(
+            "INSERT INTO answers (name,email,comment,questions_id,is_registered) VALUES(?, ?, ?, ?, ?)");
+        $statement->bind_param("sssii", $name, $email, $comment, $questionId, $isRegistered);
+        $statement->execute();
+        return $statement->affected_rows > 0;
+    }
+
     public function addVisit($id)
     {
         $statement = self::$db->prepare(
@@ -108,5 +120,15 @@ ORDER BY q.id");
 
         return $statement->get_result()->fetch_assoc()['id'];
 
+    }
+
+    public function viewAnswersByQuestionId($questionId)
+    {
+
+        $statement = self::$db->prepare(
+            "SELECT name, comment,is_registered FROM answers where questions_id = ? ORDER BY id");
+        $statement->bind_param("i", $questionId);
+        $statement->execute();
+        return $statement->get_result()->fetch_all(MYSQL_ASSOC);
     }
 }

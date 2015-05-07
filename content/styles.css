@@ -35,3 +35,7 @@ li.error {
 #login-home form {
     display: inline-block;
 }
+.centered {
+    margin-top: 20px;
+    text-align: center;
+}
