@@ -8,17 +8,28 @@ class QuestionsModel extends BaseModel
     public function getAll()
     {
         $statement = self::$db->query(
-            "SELECT q.id,q.content,q.title, u.username,q.created_at,q.visits,q.answersCount FROM questions q
-join users u
-on u.id = q.user_id ORDER BY q.id");
+            "SELECT q.id,q.content,q.title, u.username,q.created_at,q.visits,count(a.id) as answersCount
+FROM questions q
+left join users u
+on u.id = q.user_id
+left join answers a
+on q.id = a.questions_id
+group by q.id");
         return $statement->fetch_all(MYSQLI_ASSOC);
     }
 
     public function getQuestionByCategoryId($id)
     {
         $statement = self::$db->prepare(
-            "SELECT q.id,q.content,q.title, u.username,q.created_at,q.visits,q.answersCount FROM questions q
-        join users u on u.id = q.user_id WHERE q.category_id = ? ORDER BY q.id");
+            "SELECT q.id,q.content,q.title, u.username,q.created_at,q.visits,q.category_id, count(a.id) as answersCount
+FROM questions q
+left outer  join users u
+on u.id = q.user_id
+left outer join answers a
+on a.questions_id = q.id
+group by q.id
+HAVING q.category_id = ?
+ORDER BY q.id");
         $statement->bind_param('i', $id);
         $statement->execute();
         return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
