@@ -57,13 +57,13 @@ class AccountController extends BaseController
 
             $isRegister = $this->db->register($username,$email, $password,$firstName,$lastName);
             if ($isRegister) {
-                $user = $this->getUser($username);
-                $this->setLoggedUser($user);
-                $this->addInfoMessage("Successful register");
-                $this->redirect('home', 'index');
-            } else {
-                $this->addErrorMessage("Register failed");
-            }
+                  $user = $this->getUser($username);
+                  $this->setLoggedUser($user);
+                  $this->addInfoMessage("Successful register");
+                  $this->redirect('home', 'index');
+              } else {
+                  $this->addErrorMessage("Register failed");
+              }
 
         }
 
@@ -110,6 +110,7 @@ class AccountController extends BaseController
         $_SESSION['user'] = array();
         $_SESSION['user']['id'] = $user['id'];
         $_SESSION['user']['username'] = $user['username'];
+        $_SESSION['user']['email'] = $user['email'];
         if($user['isAdmin'] == 1) {
             $_SESSION['user']['isAdmin'] = true;
         }else {

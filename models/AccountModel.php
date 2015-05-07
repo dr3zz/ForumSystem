@@ -38,7 +38,7 @@ class AccountModel extends BaseModel
     }
 
     public function getLoggedUser($username){
-        $statement = self::$db->prepare("SELECT id,username,isAdmin FROM users WHERE username = ?");
+        $statement = self::$db->prepare("SELECT id,username,isAdmin,email FROM users WHERE username = ?");
         $statement->bind_param('s', $username);
         $statement->execute();
         $result = $statement->get_result()->fetch_assoc();

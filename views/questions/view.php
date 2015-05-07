@@ -25,6 +25,7 @@
     <h1>Leave Comment</h1>
     <form action="/questions/addComment" method="POST" class="form-horizontal">
         <fieldset>
+            <?php if(!$this->isLoggedIn) :?>
             <div class="form-group">
                 <label for="name" class="col-lg-4 control-label">name:</label>
                 <div class="col-lg-8">
@@ -37,6 +38,7 @@
                     <input type="email" name="email" class="form-control" id="email" placeholder="email">
                 </div>
             </div>
+            <?php endif; ?>
             <div class="form-group">
                 <label for="content" class="col-lg-4 control-label">Content:</label>
 

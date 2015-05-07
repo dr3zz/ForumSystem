@@ -85,7 +85,10 @@ class QuestionsController extends BaseController {
 
     public function addComment() {
         if($this->isPost) {
-
+            if($this->isLoggedIn) {
+                $name = $_SESSION['user']['username'];
+                var_dump($_SESSION['user']);
+            }
         }
     }
 
