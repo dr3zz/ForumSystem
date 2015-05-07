@@ -84,7 +84,6 @@ class QuestionsController extends BaseController
         }
         $this->db->addVisit($id);
         $this->answers = $this->db->viewAnswersByQuestionId($id);
-        var_dump($this->answers);
         $this->renderView('view');
     }
 

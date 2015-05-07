@@ -3,9 +3,9 @@
     <div class="wrap-ut pull-left">
         <div class="userinfo pull-left">
             <div class="avatar">
-                <img src="/content/images/avatar.jpg" alt="">
+                <img src="/content/images/registerd-user.jpg" alt="">
 
-                <div class="status green"><a href="#">admin</a></div>
+                <div class="status green"><a href="#"><?php echo htmlentities($this->question['username']) ?></a></div>
             </div>
         </div>
         <div class="posttext pull-left">
@@ -24,6 +24,34 @@
 </div>
 <?php if (!empty($this->answers)) : ?>
     <?php foreach ($this->answers as $answer) : ?>
+
+        <div class="comment">
+            <div class="wrap-ut pull-left">
+                <div class="userinfo pull-left">
+                    <div class="status green"><a href="#"><?php echo htmlentities($answer['name']) ?></a></div>
+                    <div class="avatar">
+                        <?php if ($answer['is_registered'] == 0) : ?>
+                            <img src="/content/images/default_avatar_visitor.gif" alt="visitor">
+                        <?php else : ?>
+                            <img src="/content/images/registerd-user.jpg" alt="">
+                        <?php endif; ?>
+
+                    </div>
+                </div>
+                <div class="posttext pull-left">
+
+
+                    <p><?= htmlentities($answer['comment']) ?></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="postinfo pull-left">
+                <div class="time"><i
+                        class="fa fa-clock-o"></i><?php echo htmlentities(date("F d, Y", strtotime($this->question['created_at']))); ?>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
     <?php endforeach; ?>
 <?php endif; ?>
 <div class="answer-form">

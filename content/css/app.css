@@ -58,6 +58,26 @@ label, input { display: block; margin-bottom: 10px; }
 
 /* Container */
 
+/*--- Comment --*/
+.comment { background-color: rgba(245, 236, 238, 0.10); border-radius: 2px; box-shadow: 1px 1px 2px #242424; margin: 20px auto; }
+.comment .wrap-ut { width: 85%; }
+.comment .userinfo { width: 15%; padding: 20px 0 15px 15px; }
+.comment .posttext { width: 85%; padding-right: 30px; padding-top: 20px; padding-bottom: 15px; color: #989c9e; font-size: 14px; font-family: 'Open Sans Light', sans-serif; line-height: 25px; }
+.comment .postinfo { width: 15%; border-left: solid 1px #f1f1f1; }
+.comment .avatar { width: 37px; margin-left: 5px; }
+.comment .icons { width: 48px; border-top: solid 1px #f1f1f1; margin-top: 12px; padding-top: 7px; }
+.comment h2 { color: #363838; font-size: 18px; font-family: 'Open Sans', sans-serif; margin-top: 10px; margin-bottom: 10px; }
+.comment .comments { border-bottom: solid 1px #f1f1f1; padding: 18px 0 25px 0; text-align: center; }
+.comment .comments .commentbg { background-color: #bdc3c7; border-radius: 2px; display: inline-block; padding: 12px 17px;
+    color: #ffffff; font-size: 14px; font-family: 'Open Sans Bold', sans-serif; position: relative; }
+.comment .comments .commentbg .mark { width: 11px; height: 11px; background-color: #bdc3c7; position: absolute; bottom: 0; left: 43%; margin-bottom: -5px; transform:rotate(45deg); -ms-transform:rotate(45deg); /* IE 9 */ -webkit-transform:rotate(45deg); /* Opera, Chrome, and Safari */ }
+.comment .views { border-bottom: solid 1px #f1f1f1; color:#9da6aa; font-size: 12px; font-family: 'Open Sans Regular', sans-serif; text-align: center; line-height: 29px; }
+.comment .views i { font-size: 14px; }
+.comment .time { color:#9da6aa; font-size: 12px; font-family: 'Open Sans Regular', sans-serif; text-align: center; line-height: 29px; }
+.comment .time i { font-size: 14px; }
+
+
+
 /*--- Post --*/
 .post { background-color: #ffffff; border-radius: 2px; box-shadow: 1px 1px 2px #242424; margin-top: 20px; margin-bottom: 20px; }
 .post .wrap-ut { width: 85%; }
