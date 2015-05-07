@@ -17,13 +17,12 @@ abstract class BaseController
         }
         if (isset($_SESSION['user'])) {
             $this->isLoggedIn = true;
-            if($_SESSION['user']['isAdmin']) {
+            if ($_SESSION['user']['isAdmin']) {
                 $this->isAdmin = true;
-            }else {
+            } else {
                 $this->isAdmin = false;
             }
         }
-
 
 
         $this->onInit();
@@ -77,14 +76,18 @@ abstract class BaseController
         $this->redirectToUrl($url);
     }
 
-    public function setFormToken(){
-        $_SESSION['formToken'] = hash('sha256',microtime());
+    public function setFormToken()
+    {
+        $_SESSION['formToken'] = hash('sha256', microtime());
     }
-    public function getFormToken(){
+
+    public function getFormToken()
+    {
         return $_SESSION['formToken'];
     }
 
-    public function unsetFormToken(){
+    public function unsetFormToken()
+    {
         unset($_SESSION['formToken']);
     }
 
@@ -105,6 +108,19 @@ abstract class BaseController
     function addErrorMessage($msg)
     {
         $this->addMessage($msg, 'error');
+    }
+
+    protected function getRows($rows)
+    {
+        $resultArray = array();
+        $count = 1;
+        while ($rows > 0) {
+            $resultArray[] = $count;
+            $rows = $rows - DEFAULT_PAGE_SIZE;
+            $count++;
+        }
+
+        return $resultArray;
     }
 
 }

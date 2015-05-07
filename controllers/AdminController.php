@@ -1,7 +1,7 @@
 <?php
 
 
-class AdminController extends BaseController
+class AdminController extends HomeController
 {
 
     private $db;
@@ -14,23 +14,23 @@ class AdminController extends BaseController
 
     }
 
-
-    public function index()
-    {
-        $this->categories = $this->db->getAllCategories();
-        $this->questions = $this->db->getAll();
-        $this->setFormToken();
-        $this->renderView();
-    }
-
-    public function category($id)
-    {
-        $this->questions = $this->db->getQuestionByCategoryId($id);
-        $this->categories = $this->db->getAllCategories();
-        var_dump($this->categories);
-        $this->setFormToken();
-        $this->renderView('index');
-    }
+//
+//    public function index()
+//    {
+//        $this->categories = $this->db->getAllCategories();
+//        $this->questions = $this->db->getAll();
+//        $this->setFormToken();
+//        $this->renderView();
+//    }
+//
+//    public function category($id)
+//    {
+//        $this->questions = $this->db->getQuestionByCategoryId($id);
+//        $this->categories = $this->db->getAllCategories();
+//        var_dump($this->categories);
+//        $this->setFormToken();
+//        $this->renderView('index');
+//    }
 
     public function controlPanel()
     {

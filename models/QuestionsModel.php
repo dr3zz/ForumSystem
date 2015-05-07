@@ -5,21 +5,48 @@ class QuestionsModel extends BaseModel
 {
 
 
-    public function getAll()
+    public function getNumberOfRows($id = null)
     {
-        $statement = self::$db->query(
+        if ($id != null) {
+            $statement = self::$db->prepare("SELECT id from questions where category_id = ?");
+            $statement->bind_param('i', $id);
+            $statement->execute();
+            $statement->store_result();
+            return $statement->num_rows;
+        } else {
+            $statement = self::$db->query('select id from questions');
+        }
+
+        return mysqli_num_rows($statement);
+    }
+
+    public function getAll($id)
+    {
+        if ($id > 0) {
+            $id = $id - 1;
+        }
+        $pageSize = DEFAULT_PAGE_SIZE;
+        $statement = self::$db->prepare(
             "SELECT q.id,q.content,q.title, u.username,q.created_at,q.visits,count(a.id) as answersCount
 FROM questions q
 left join users u
 on u.id = q.user_id
 left join answers a
 on q.id = a.questions_id
-group by q.id");
-        return $statement->fetch_all(MYSQLI_ASSOC);
+
+group by q.id limit ?, ?");
+        $id = $id * $pageSize;
+        $statement->bind_param('ii', $id, $pageSize);
+        $statement->execute();
+        return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getQuestionByCategoryId($id)
+    public function getQuestionByCategoryId($categoryId, $id)
     {
+        if ($id > 0) {
+            $id = $id - 1;
+        }
+        $pageSize = DEFAULT_PAGE_SIZE;
         $statement = self::$db->prepare(
             "SELECT q.id,q.content,q.title, u.username,q.created_at,q.visits,q.category_id, count(a.id) as answersCount
 FROM questions q
@@ -29,8 +56,9 @@ left outer join answers a
 on a.questions_id = q.id
 group by q.id
 HAVING q.category_id = ?
-ORDER BY q.id");
-        $statement->bind_param('i', $id);
+ORDER BY q.id
+limit ?, ?");
+        $statement->bind_param('iii', $categoryId, $id, $pageSize);
         $statement->execute();
         return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
     }
