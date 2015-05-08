@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/content/css/app.css">
     <link rel="stylesheet" type="text/css" href="/content/styles.css">
     <link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
