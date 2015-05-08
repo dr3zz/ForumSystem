@@ -25,6 +25,7 @@ abstract class BaseModel {
 //            self::$db = new PDO($dsn, DB_USER, DB_PASS);
             self::$db = new mysqli(
                 $dsn, DB_USER, DB_PASS);
+            var_dump(self::$db);
             self::$db->set_charset("utf8");
             if (self::$db->connect_errno) {
                 die('Cannot connect to database');
