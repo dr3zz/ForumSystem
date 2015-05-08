@@ -74,7 +74,7 @@ label, input { display: block; margin-bottom: 10px; }
 .comment .views { border-bottom: solid 1px #f1f1f1; color:#9da6aa; font-size: 12px; font-family: 'Open Sans Regular', sans-serif; text-align: center; line-height: 29px; }
 .comment .views i { font-size: 14px; }
 .comment .time { color:#9da6aa; font-size: 12px; font-family: 'Open Sans Regular', sans-serif; text-align: center; line-height: 29px; }
-.comment .time i { font-size: 14px; }
+.comment .time i { font-size: 14px; margin-right: 2%; }
 
 
 
@@ -94,7 +94,8 @@ label, input { display: block; margin-bottom: 10px; }
 .post .views { border-bottom: solid 1px #f1f1f1; color:#9da6aa; font-size: 12px; font-family: 'Open Sans Regular', sans-serif; text-align: center; line-height: 29px; }
 .post .views i { font-size: 14px; }
 .post .time { color:#9da6aa; font-size: 12px; font-family: 'Open Sans Regular', sans-serif; text-align: center; line-height: 29px; }
-.post .time i { font-size: 14px; }
+.post .time i { font-size: 14px; margin-right: 2%; }
+
 
 
 /*--- Sidebar ---*/

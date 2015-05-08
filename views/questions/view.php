@@ -16,8 +16,7 @@
         <div class="clearfix"></div>
     </div>
     <div class="postinfo pull-left">
-        <div class="time"><i
-                class="fa "></i>Posted on  <?php echo htmlentities(date("F d, Y", strtotime($this->question['created_at']))); ?>
+        <div class="time"><div>Posted on</div> <i class="fa fa-clock-o"></i><?php echo htmlentities(date("F d, Y", strtotime($this->question['created_at']))); ?>
         </div>
     </div>
     <div class="clearfix"></div>
@@ -28,7 +27,7 @@
         <div class="comment">
             <div class="wrap-ut pull-left">
                 <div class="userinfo pull-left">
-                    <div class="status green"><a href="#"><?php echo htmlentities($answer['name']) ?></a></div>
+                    <div class="status green"><a href="#"><?php echo htmlentities($answer['name']); ?></a></div>
                     <div class="avatar">
                         <?php if ($answer['is_registered'] == 0) : ?>
                             <img src="/content/images/default_avatar_visitor.gif" alt="visitor">
@@ -46,8 +45,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="postinfo pull-left">
-                <div class="time"><i
-                        class="fa fa-clock-o"></i><?php echo htmlentities($this->secondsToTime($answer['timediff'])); ?>
+                <div class="time"><i class="fa fa-clock-o"></i><?php echo htmlentities(date("F d, Y", strtotime($answer['timediff']))); ?>
                 </div>
             </div>
             <div class="clearfix"></div>
