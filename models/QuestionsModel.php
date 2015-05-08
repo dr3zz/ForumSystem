@@ -147,7 +147,7 @@ limit ?, ?");
         $statement->bind_param("i", $userId);
         $statement->execute();
 
-        return $statement->get_result()->fetch_assoc()['id'];
+        return $statement->get_result()->fetch_assoc();
 
     }
 
