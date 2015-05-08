@@ -28,6 +28,7 @@ abstract class BaseModel {
             var_dump(self::$db);
             self::$db->set_charset("utf8");
             if (self::$db->connect_errno) {
+                var_dump("OPA");
                 die('Cannot connect to database');
             }
         }
