@@ -29,7 +29,7 @@
             <div class="form-group">
                 <label for="lastName" class="col-lg-4 control-label">Last Name:</label>
                 <div class="col-lg-8">
-                    <input type="text" name="firstName" class="form-control" id="lastName" placeholder="Last Name...">
+                    <input type="text" name="lastName" class="form-control" id="lastName" placeholder="Last Name...">
                 </div>
             </div>
             <input type="hidden" name="formToken" value="<?php echo $_SESSION['formToken'] ?>">
