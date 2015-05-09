@@ -74,8 +74,17 @@ class AdminController extends HomeController
     public function deletePost($id) {
 
         if($this->isPost) {
-
-
+            $questionId = $_SESSION['questionId'];
+            $isUpdate = $this->db->setDeleteFlagToPost($questionId);
+            if($isUpdate) {
+                if ($isUpdate) {
+                    $this->addInfoMessage("Question deleted");
+                    return $this->redirectToUrl('/admin/posts');
+                } else {
+                    $this->addErrorMessage("Error on deleting question");
+                    return $this->redirectToUrl("/admin/posts/");
+                }
+            }
 
         }
         $this->post = $this->db->getPostById($id);
@@ -87,7 +96,7 @@ class AdminController extends HomeController
         if($answersCount['count'] > 0) {
             $this->answersCount = $answersCount['count'];
         }
-
+        $_SESSION['questionId'] = $id;
         $this->setFormToken();
         $this->renderView(__FUNCTION__);
     }
@@ -106,6 +115,10 @@ class AdminController extends HomeController
             $title = $_POST['title'];
             $content = $_POST['content'];
             $id = $_POST['postId'];
+            if($id != $_SESSION['questionId']) {
+                $this->addErrorMessage('Invalid question try again');
+                return $this->redirectToUrl('/admin/editPost/' . $_SESSION['questionId']);
+            }
 
             if (isset($_POST['category'])) {
                 $categoryId = $_POST['category'];
@@ -128,14 +141,16 @@ class AdminController extends HomeController
             if ($isValid) {
                 $isUpdate = $this->db->updatePost($id, $title, $content, $categoryId);
                 if ($isUpdate) {
-                    $this->addInfoMessage($isUpdate);
-                  return $this->redirectToUrl('/');
+                    $this->addInfoMessage("Successful edit question");
+                  return $this->redirectToUrl('/admin/posts/');
                 } else {
-                    $this->addErrorMessage($isUpdate);
-                    return $this->redirectToUrl("/admin/posts/");
+                    $this->addErrorMessage("Error on editing question");
+                    $this->addErrorMessage($_SESSION['questionId']);
+                    return $this->redirectToUrl("/admin/editPost/" . $id);
                 }
             }else{
-                return $this->redirectToUrl("/admin/posts/");
+
+                return $this->redirectToUrl("/admin/editPost/" . $id);
             }
 
         }

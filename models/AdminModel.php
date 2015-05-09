@@ -58,7 +58,16 @@ where q.id = ?");
         $statement->bind_param('ssii', $title, $content, $categoryId, $id);
         $statement->execute();
 
-        return $statement->affected_rows;
+        return $statement->affected_rows > 0;
+    }
+
+    public function setDeleteFlagToPost($id) {
+        $statement = self::$db->prepare("
+            UPDATE questions SET  is_deleted = 1 WHERE id = ?");
+        $statement->bind_param('i', $id);
+        $statement->execute();
+
+        return $statement->affected_rows > 0;
     }
 
     public function getAnswersCountByQuestionId($id) {

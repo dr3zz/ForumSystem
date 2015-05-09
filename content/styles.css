@@ -15,11 +15,11 @@ body>footer {
     text-align: center;
 }
 
-li.info {
+div.info {
     background: #7f7;
 }
 
-li.error {
+div.error {
     background: #f77;
 }
 #logged-in-info {

@@ -1,11 +1,13 @@
 <?php
-if (isset($_SESSION['messages'])) {
-    echo '<ul>';
-    foreach ($_SESSION['messages'] as $msg) {
-        echo '<li class="' . $msg['type'] . '">';
+if (isset($_SESSION['messages'])) : ?>
+    <div class="centered">
+    <?php foreach ($_SESSION['messages'] as $msg) :
+        echo '<div class="' . $msg['type'] . '">';
         echo htmlspecialchars($msg['text']);
-        echo '</li>';
-    }
-    echo '</ul>';
-    unset($_SESSION['messages']);
-}
+        echo '</div>';
+    endforeach; ?>
+    </div>
+<?php endif; ?>
+
+<?php unset($_SESSION['messages']);
+

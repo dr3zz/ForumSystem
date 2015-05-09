@@ -8,13 +8,13 @@ class QuestionsModel extends BaseModel
     public function getNumberOfRows($id = null)
     {
         if ($id != null) {
-            $statement = self::$db->prepare("SELECT id from questions where category_id = ?");
+            $statement = self::$db->prepare("SELECT id from questions where category_id = ? and is_deleted = 0");
             $statement->bind_param('i', $id);
             $statement->execute();
             $statement->store_result();
             return $statement->num_rows;
         } else {
-            $statement = self::$db->query('select id from questions');
+            $statement = self::$db->query('select id from questions where is_deleted = 0');
         }
 
         return mysqli_num_rows($statement);
@@ -76,7 +76,11 @@ limit ?, ?");
     public function getAllCategories()
     {
         $statement = self::$db->query(
-            "SELECT c.id, c.name, count(q.id) as count FROM categories c left outer join questions q on c.id = q.category_id group by c.id,c.name");
+            "SELECT c.id, c.name, count(q.id) as count FROM categories c
+        left outer join  questions q
+        on c.id = q.category_id
+        group by c.id,c.name
+       ");
 
         return $statement->fetch_all(MYSQL_ASSOC);
     }
@@ -114,7 +118,7 @@ limit ?, ?");
     public function viewQuestion($id)
     {
         $statement = self::$db->prepare(
-            "SELECT q.title,q.content, u.username,q.created_at,q.id FROM questions q join users u on u.id = q.user_id WHERE q.id = ?");
+            "SELECT q.title,q.content, u.username,q.created_at,q.id FROM questions q join users u on u.id = q.user_id WHERE q.id = ? and is_deleted = 0");
         $statement->bind_param("i", $id);
         $statement->execute();
 
