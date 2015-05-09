@@ -41,7 +41,8 @@
                 </div>
             <?php endforeach; ?>
             <?php if (count($this->pagination) > 1) : ?>
-                <ul class="pagination">
+                <div class="centered">
+                <ul class="paginationforum">
                     <?php foreach ($this->pagination as $id) : ?>
                         <?php if ($this->pageId == $id): ?>
                             <li class="active"><a href="/home/category/<?= $this->categoryId . '/' ?><?= $id ?>"><?= $id ?></a></li>
@@ -51,7 +52,8 @@
                         <?php endif; ?>
 
                     <?php endforeach; ?>
-                </ul>
+
+                </div>
             <?php endif ?>
 
             <!-- POST -->

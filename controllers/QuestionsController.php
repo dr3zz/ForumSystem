@@ -9,8 +9,13 @@ class QuestionsController extends BaseController
         $this->db = new QuestionsModel();
     }
 
+    public function index(){
+       $this->redirectToUrl('/');
+    }
+
     public function create()
     {
+        $this->title = 'New Question';
         if (!$this->isLoggedIn) {
             $this->redirect('home', 'index');
         }
@@ -77,6 +82,7 @@ class QuestionsController extends BaseController
 
     public function view($id)
     {
+        $this->title = 'Answers';
         $this->question = $this->db->viewQuestion($id);
         if (empty($this->question)) {
             $this->addErrorMessage("Invalid quiestion");
@@ -89,6 +95,7 @@ class QuestionsController extends BaseController
 
     public function addAnswer()
     {
+
         if ($this->isPost) {
 
             if ($_POST['id'] == null || $_POST['id'] != $_SESSION['questionId']) {

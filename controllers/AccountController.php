@@ -8,6 +8,7 @@ class AccountController extends BaseController
 
     public function onInit()
     {
+
         $this->db = new AccountModel();
 
     }

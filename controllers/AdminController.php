@@ -9,9 +9,21 @@ class AdminController extends HomeController
 
     public function onInit()
     {
+        if (!$this->isAdmin) {
+
+            $this->title = "unahtorized";
+            $this->renderView('authorized');
+
+            die();
+        }
         $this->title = "Admin";
         $this->db = new AdminModel();
 
+    }
+
+    public function index()
+    {
+        $this->redirectToUrl("/");
     }
 
 //
@@ -40,9 +52,91 @@ class AdminController extends HomeController
 //
 //    }
 
-    public function editUser($id = null)
+    public function posts($id = 0)
+    {
+        if ($id == null) {
+            $this->pageId = 1;
+        } else {
+            $this->pageId = $id;
+        }
+        $this->categories = $this->db->getAllCategories();
+        $count = $this->db->getNumberOfRows();
+
+        $this->questions = $this->db->getAll($id);
+        if (count($this->questions) == 0) {
+            $this->redirectToUrl('/');
+        }
+
+        $this->pagination = $this->getRows($count);
+        $this->renderView(__FUNCTION__);
+    }
+
+    public function editPost($id)
+    {
+        $this->title .= ' Edit user post';
+
+        if ($this->isPost) {
+            if (!isset($_POST['formToken']) || $_POST['formToken'] != $this->getFormToken()) {
+                $this->addErrorMessage("Warning CSRF! ");
+                $this->unsetFormToken();
+
+                return $this->redirectToUrl('/admin/controlPanel');
+            }
+            $title = $_POST['title'];
+            $content = $_POST['content'];
+            $id = $_POST['postId'];
+
+            if (isset($_POST['category'])) {
+                $categoryId = $_POST['category'];
+            } else {
+                $categoryId = null;
+            }
+            $isValid = true;
+            if ($title == null || strlen($title) < 1) {
+                $this->addErrorMessage("Title is invalid");
+                $isValid = false;
+            }
+            if ($content == null || strlen($content) < 1) {
+                $this->addErrorMessage("content is invalid");
+                $isValid = false;
+            }
+            if ($categoryId == null) {
+                $this->addErrorMessage("Please select a valid category");
+                $isValid = false;
+            }
+            if ($isValid) {
+                $isUpdate = $this->db->updatePost($id, $title, $content, $categoryId);
+                if ($isUpdate) {
+                    $this->addInfoMessage($isUpdate);
+                  return $this->redirectToUrl('/');
+                } else {
+                    $this->addErrorMessage($isUpdate);
+                    return $this->redirectToUrl("/admin/posts/");
+                }
+            }else{
+                return $this->redirectToUrl("/admin/posts/");
+            }
+
+        }
+        $this->post = $this->db->getPostById($id);
+        if (!$this->post) {
+            $this->redirect('admin', 'controlPanel');
+        }
+        $_SESSION['questionId'] = $id;
+        $this->categories = $this->db->getAllCategories();
+        $this->tags = $this->db->getAllTags();
+        $this->setFormToken();
+        $this->renderView(__FUNCTION__);
+    }
+
+    public function editUser($id)
     {
         if ($this->isPost) {
+            if (!isset($_POST['formToken']) || $_POST['formToken'] != $this->getFormToken()) {
+                $this->addErrorMessage("Warning CSRF! ");
+                $this->unsetFormToken();
+                return $this->redirectToUrl('/admin/controlPanel');
+            }
             $firstName = $_POST['firstName'];
             $lastName = $_POST['lastName'];
             $isAdmin = 0;
@@ -53,7 +147,7 @@ class AdminController extends HomeController
             $isUpdate = $this->db->updateUser($id, $firstName, $lastName, $isAdmin);
 
             if ($isUpdate) {
-                $this->addInfoMessage("Update user successful");
+                $this->addInfoMessage($isUpdate);
                 return $this->redirect('admin', 'controlPanel');
             } else {
                 $this->addErrorMessage($isUpdate);
@@ -62,14 +156,12 @@ class AdminController extends HomeController
             }
 
         }
-        if ($id == null) {
-            $this->redirect('admin', 'controlPanel');
-        }
 
         $this->user = $this->db->getUserById($id);
         if (!$this->user) {
             $this->redirect('admin', 'controlPanel');
         }
+        $this->setFormToken();
         $this->renderView('edit-user');
     }
 
@@ -80,6 +172,7 @@ class AdminController extends HomeController
 
     private function getParam($param)
     {
+
         switch ($param) {
             case 'category' :
                 return $this->renderView('categories');
@@ -89,8 +182,7 @@ class AdminController extends HomeController
                 $this->users = $this->db->getUsers();
                 $this->renderView('users');
                 break;
-            case 'posts' :
-                return $this->renderView('posts');
+
             default:
                 return $this->redirectToUrl('/admin/controlPanel');
         }

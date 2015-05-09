@@ -39,3 +39,51 @@ li.error {
     margin-top: 20px;
     text-align: center;
 }
+
+.postinfobot {
+    border-top: solid 1px #f1f1f1;
+    line-height: 50px;
+    padding: 0 30px 0 94px;
+}
+
+
+.postinfobot .likeblock {
+    width: 120px;
+}
+
+.postinfobot .prev {
+    width: 30px;
+}
+
+.postinfobot .prev a {
+    font-size: 18px;
+    color: #bdc3c7;
+}
+
+.postinfobot .posted {
+    width: 300px;
+    margin-left: 18px;
+    font-size: 12px;
+    color: #bdc3c7;
+    font-family: 'Open Sans Regular', sans-serif;
+}
+
+.postinfobot .posted i {
+    font-size: 18px;
+    color: #bdc3c7;
+    padding-right: 8px;
+}
+
+.postinfobot .next {
+    width: 90px;
+    text-align: right;
+}
+
+.postinfobot .next a {
+    font-size: 18px;
+    color: #bdc3c7;
+}
+
+.postinfobot .next a i {
+    padding-right: 18px;
+}

@@ -22,7 +22,9 @@
                             </h2>
 
                             <p/><?php echo htmlentities($question['content']); ?></p>
+
                         </div>
+
                         <div class="clearfix"></div>
                     </div>
                     <div class="postinfo pull-left">
@@ -31,7 +33,9 @@
                                 <?php echo htmlentities($question['answersCount']) ?>
                                 <div class="mark"></div>
                             </div>
+
                         </div>
+
                         <div class="views"><i class="fa fa-eye"></i> <?php echo htmlentities($question['visits']); ?>
                         </div>
                         <div class="time"><i
@@ -40,19 +44,23 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
+
             <?php endforeach; ?>
             <?php if (count($this->pagination) > 1) : ?>
-                <ul class="pagination">
-                    <?php foreach ($this->pagination as $id) : ?>
-                        <?php if ($this->pageId == $id): ?>
-                            <li class="active"><a href="/home/index/<?= $id ?>"><?= $id ?></a></li>
-                            <?php ?>
-                        <?php else: ?>
-                            <li><a href="/home/index/<?= $id ?>"><?= $id ?></a></li>
-                        <?php endif; ?>
+                <div class="centered">
+                    <ul class="pagination">
+                        <?php foreach ($this->pagination as $id) : ?>
+                            <?php if ($this->pageId == $id): ?>
+                                <li class="active"><a href="/home/index/<?= $id ?>"><?= $id ?></a></li>
+                                <?php ?>
+                            <?php else: ?>
+                                <li><a href="/home/index/<?= $id ?>"><?= $id ?></a></li>
+                            <?php endif; ?>
 
-                    <?php endforeach; ?>
-                </ul>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+
             <?php endif ?>
 
             <!-- POST -->

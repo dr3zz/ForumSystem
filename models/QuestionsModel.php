@@ -20,7 +20,7 @@ class QuestionsModel extends BaseModel
         return mysqli_num_rows($statement);
     }
 
-    public function getAll($id)
+    public function getAll($id = 0)
     {
         if ($id > 0) {
             $id = $id - 1;
