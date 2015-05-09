@@ -14,7 +14,8 @@ class AccountModel extends BaseModel
         }
 //        $username = mysqli_real_escape_string($username);
         $hash_pass = password_hash($password, PASSWORD_BCRYPT);
-        $registerStatement = self::$db->prepare("INSERT INTO Users(username,email,pass_hash,first_name,last_name) VALUES(?, ?, ?, ?, ?)");
+
+        $registerStatement = self::$db->prepare("INSERT INTO users(username,email,pass_hash,first_name,last_name) VALUES(?, ?, ?, ?, ?)");
         $registerStatement->bind_param("sssss", $username, $email, $hash_pass, $firstName, $lastName);
         $registerStatement->execute();
         return true;

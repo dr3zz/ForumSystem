@@ -96,9 +96,26 @@ abstract class BaseController
         if (!isset($_SESSION['messages'])) {
             $_SESSION['messages'] = array();
         };
-        array_push($_SESSION['messages'],
-            array('text' => $msg, 'type' => $type));
+        if(empty($_SESSION['messages'])) {
+            array_push($_SESSION['messages'],
+                array('text' => $msg, 'type' => $type));
+        }
+        foreach($_SESSION['messages'] as $messages) {
+            if(!in_array($msg,$messages)) {
+                array_push($_SESSION['messages'],
+                    array('text' => $msg, 'type' => $type));
+            }
+        }
     }
+
+//    function addMessage($msg, $type)
+//    {
+//        if (!isset($_SESSION['messages'])) {
+//            $_SESSION['messages'] = array();
+//        };
+//        array_push($_SESSION['messages'],
+//            array('text' => $msg, 'type' => $type));
+//    }
 
     function addInfoMessage($msg)
     {
