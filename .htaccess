@@ -1,6 +1,15 @@
-<IfModule mod_rewrite.c>
+#<IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteCond %{REQUEST_URI} !^/content/.*$
+ RewriteCond %{REQUEST_URI} !^/content/.*$
   RewriteCond %{REQUEST_URI} !^/favicon\.ico$
   RewriteRule ^ index.php
-</IfModule>
+#</IfModule>
+# Mod Rewrite
+#Fix Rewrite
+#Options -Multiviews
+#Options +FollowSymLinks
+#RewriteEngine On
+#RewriteBase /
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule . /index.php [L]

@@ -38,7 +38,8 @@ group by q.id limit ?, ?");
         $id = $id * $pageSize;
         $statement->bind_param('ii', $id, $pageSize);
         $statement->execute();
-        return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+
     }
 
     public function getQuestionByCategoryId($categoryId, $id)
@@ -75,7 +76,8 @@ limit ?, ?");
     {
         $statement = self::$db->query(
             "SELECT c.id, c.name, count(q.id) as count FROM categories c left outer join questions q on c.id = q.category_id group by c.id,c.name");
-        return $statement->fetch_all(MYSQLI_ASSOC);
+
+        return $statement->fetch_all(MYSQL_ASSOC);
     }
 
     public function createQuestion($title, $content, $userId, $categoryId)
