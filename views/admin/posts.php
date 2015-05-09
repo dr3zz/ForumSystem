@@ -15,7 +15,7 @@
         <div class="postinfobot">
             <div class="posted pull-left"><i class="fa fa-clock-o"></i> Posted on : <?php echo htmlentities(date("F d, Y", strtotime($question['created_at'])));?></div>
             <div class="next pull-right">
-                <a href="#" class="btn btn-danger">DELETE</a>
+                <a href="/admin/deletePost/<?php echo htmlentities($question['id']);?>" class="btn btn-danger">DELETE</a>
             </div>
             <div class="next pull-right">
                 <a href="/admin/editPost/<?php echo htmlentities($question['id']);?>" class="btn btn-warning">EDIT</a>

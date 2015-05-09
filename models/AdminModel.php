@@ -26,6 +26,7 @@ class AdminModel extends QuestionsModel
     }
 
 
+
     public function getPostById($id)
     {
         $statement = self::$db->prepare("SELECT q.id,q.content,q.title, u.username,q.created_at,q.category_id,c.name
@@ -58,6 +59,14 @@ where q.id = ?");
         $statement->execute();
 
         return $statement->affected_rows;
+    }
+
+    public function getAnswersCountByQuestionId($id) {
+        $statement = self::$db->prepare(
+            "SELECT count(a.id) as count FROM answers a left outer join questions q on q.id = a.questions_id where q.id = ?");
+        $statement->bind_param("i", $id);
+        $statement->execute();
+        return $statement->get_result()->fetch_assoc();
     }
 
 }

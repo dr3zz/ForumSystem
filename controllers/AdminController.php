@@ -71,6 +71,27 @@ class AdminController extends HomeController
         $this->renderView(__FUNCTION__);
     }
 
+    public function deletePost($id) {
+
+        if($this->isPost) {
+
+
+
+        }
+        $this->post = $this->db->getPostById($id);
+        if (!$this->post) {
+            $this->redirect('admin', 'controlPanel');
+        }
+        $answersCount = $this->db->getAnswersCountByQuestionId($id);
+        $this->answersCount = 0;
+        if($answersCount['count'] > 0) {
+            $this->answersCount = $answersCount['count'];
+        }
+
+        $this->setFormToken();
+        $this->renderView(__FUNCTION__);
+    }
+
     public function editPost($id)
     {
         $this->title .= ' Edit user post';

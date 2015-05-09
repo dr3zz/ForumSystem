@@ -33,7 +33,7 @@ left join users u
 on u.id = q.user_id
 left join answers a
 on q.id = a.questions_id
-
+where q.is_deleted = 0
 group by q.id limit ?, ?");
         $id = $id * $pageSize;
         $statement->bind_param('ii', $id, $pageSize);
@@ -55,6 +55,7 @@ left outer  join users u
 on u.id = q.user_id
 left outer join answers a
 on a.questions_id = q.id
+where q.is_deleted = 0
 group by q.id
 HAVING q.category_id = ?
 ORDER BY q.id

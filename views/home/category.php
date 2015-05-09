@@ -42,7 +42,7 @@
             <?php endforeach; ?>
             <?php if (count($this->pagination) > 1) : ?>
                 <div class="centered">
-                <ul class="paginationforum">
+                <ul class="pagination">
                     <?php foreach ($this->pagination as $id) : ?>
                         <?php if ($this->pageId == $id): ?>
                             <li class="active"><a href="/home/category/<?= $this->categoryId . '/' ?><?= $id ?>"><?= $id ?></a></li>

@@ -87,3 +87,7 @@ li.error {
 .postinfobot .next a i {
     padding-right: 18px;
 }
+.form-color {
+    background-color: #cccccc;
+    margin: 10px;
+}
