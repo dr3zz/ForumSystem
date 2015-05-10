@@ -59,14 +59,14 @@
         <fieldset>
             <?php if (!$this->isLoggedIn) : ?>
                 <div class="form-group">
-                    <label for="name" class="col-lg-4 control-label">name:</label>
+                    <label for="name" class="col-lg-4 control-label"><i class="fa fa-male"></i></label>
 
                     <div class="col-lg-8">
                         <input type="text" name="name" class="form-control" id="name" placeholder="name...">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="email" class="col-lg-4 control-label">email:</label>
+                    <label for="email" class="col-lg-4 control-label"><i class="fa fa-envelope-o"></i></label>
 
                     <div class="col-lg-8">
                         <input type="email" name="email" class="form-control" id="email" placeholder="email">
@@ -74,7 +74,7 @@
                 </div>
             <?php endif; ?>
             <div class="form-group">
-                <label for="content" class="col-lg-4 control-label">Comment:</label>
+                <label for="content" class="col-lg-4 control-label"><i class="fa fa-comment-o"></i></label>
 
                 <div class="col-lg-8">
                     <textarea rows="10" cols="70" id="content" class="form-control" name="comment" "></textarea>
