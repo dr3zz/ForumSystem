@@ -20,7 +20,7 @@
                                 <a href="/questions/view/<?php echo $question['id'] ?> "><?php echo htmlspecialchars($question['title']); ?></a>
                             </h2>
 
-                            <p/><?php echo htmlentities($question['content']); ?></p>
+                            <p><?php echo htmlentities($question['content']); ?></p>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -66,7 +66,7 @@
                 <div class="divline"></div>
                 <div class="blocktxt">
                     <ul class="cats">
-                        <li><a href="/">ALL</li>
+                        <li><a href="/">ALL</a></li>
                         <?php foreach ($this->categories as $category) : ?>
                             <li>
                                 <a href="/home/category/<?php echo $category['id'] ?>"><?php echo htmlentities($category['name']) ?>

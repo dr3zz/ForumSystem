@@ -1,4 +1,4 @@
-<footer>
+<footer class="footer">
     <div class="container">
         <div class="row">
             <div class="col-sm-1 logo "><a href="#"><img src="/content/images/logo.jpg" alt=""  /></a></div>
