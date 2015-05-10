@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-
+            <input type="hidden" name="formToken" value="<?php echo $_SESSION['formToken'] ?>">
         </fieldset>
     </form>
 </div>

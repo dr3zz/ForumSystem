@@ -74,6 +74,12 @@ class AdminController extends HomeController
     public function deletePost($id) {
 
         if($this->isPost) {
+            if (!isset($_POST['formToken']) || $_POST['formToken'] != $this->getFormToken()) {
+                $this->addErrorMessage("Warning CSRF! ");
+                $this->unsetFormToken();
+
+                return $this->redirectToUrl('/admin/controlPanel');
+            }
             $questionId = $_SESSION['questionId'];
             $isUpdate = $this->db->setDeleteFlagToPost($questionId);
             if($isUpdate) {
