@@ -29,7 +29,7 @@
     <div class="centered">
         <ul class="pagination">
             <?php if($this->pageId > 1): ?>
-                <li class=""><a href="/admin/posts/<?= $this->pageId -1 ?>">&lt</a></li>
+                <li class=""><a href="/admin/posts/<?= $this->pageId -1 ?>">&lt;</a></li>
             <?php endif;?>
             <?php foreach ($this->pagination as $id) : ?>
 
@@ -42,7 +42,7 @@
 
             <?php endforeach; ?>
             <?php if($this->pageId < count($this->pagination)): ?>
-                <li class=""><a href="/admin/posts/<?= $this->pageId +1 ?>">&gt</a></li>
+                <li class=""><a href="/admin/posts/<?= $this->pageId +1 ?>">&gt;</a></li>
             <?php endif;?>
         </ul>
     </div>
