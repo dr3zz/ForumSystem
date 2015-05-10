@@ -34,7 +34,7 @@
             <?php foreach ($this->pagination as $id) : ?>
 
                 <?php if ($this->pageId == $id): ?>
-                    <li class="active"><a href="/admin/posts/<?= $id ?>"><?= $id ?></a></li>
+                    <li class="active"><span><?= $id ?></span></li>
                     <?php ?>
                 <?php else: ?>
                     <li><a href="/admin/posts/<?= $id ?>"><?= $id ?></a></li>

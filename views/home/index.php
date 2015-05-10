@@ -54,7 +54,7 @@
                         <?php endif;?>
                         <?php foreach ($this->pagination as $id) : ?>
                             <?php if ($this->pageId == $id): ?>
-                                <li class="active"><a href="/home/index/<?= $id ?>"><?= $id ?></a></li>
+                                <li class="active"><span><?= $id ?></span></li>
                                 <?php ?>
                             <?php else: ?>
                                 <li><a href="/home/index/<?= $id ?>"><?= $id ?></a></li>
